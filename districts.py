@@ -1,15 +1,24 @@
 
 
 class Districts:
-    def __init__(self, dataset: dict):
+    def __init__(self, dataset):
         """
         builds dataset, from input
         :param dataset: input Data object from data.py
         """
-        self.data = dataset
+        self.dataset = dataset
+        self.all_districts = self.dataset.all_districts_set
+        self.districts_set = self.dataset.districts_set
 
     def filter_districts(self, letters):
-
+        """
+        sets data to conclude values only relevant to specific
+        :param letters: list of letters, data will be filtered by the first char in list\not
+        :return: updated data
+        """
+        self.dataset.get_all_districts(self.dataset)
+        self.dataset.get_relevant_districts(self.dataset, letters)
+        self.dataset.set_districts_data(self.dataset, self.districts_set)
 
     # print_details function
     def print_details(self, features, statistic_functions, name):

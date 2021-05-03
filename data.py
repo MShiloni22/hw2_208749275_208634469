@@ -11,14 +11,27 @@ class Data:
         self.path = path
         df = pandas.read_csv(path)
         self.data = df.to_dict(orient="list")
-        self.districts_set = {}
+        self.all_districts_set = {}
+        self.districts_set = {}  # a set of relevant districts
 
     def get_all_districts(self):
         """
         creates a set of all districts' names in the csv file
         :return: set of all districts' names
         """
-        self.districts_set = set(self.data['denominazione_region'])
+        self.all_districts_set = set(self.data['denominazione_region'])
+
+    def get_relevant_districts(self, letters):
+        """
+        creates a new set of districts, with the relevant ones only
+        :param letters: a list of letters, deciding which district is in the set
+        :return: updated set of districts
+        """
+        districts_set = []
+        for i in self.all_districts_set:
+            if i[0] in letters:
+                districts_set.append(i)
+        self.districts_set = set(districts_set)
 
     def set_districts_data(self, districts):
         """
