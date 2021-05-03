@@ -19,3 +19,19 @@ class Data:
         :return: set of all districts' names
         """
         self.districts_set = set(self.data['denominazione_region'])
+
+
+    def set_districts_data(self, districts):
+        """
+        update data, will conclude all relevant regions
+        :param districts: list of relevant regions
+        :return: updated data
+        """
+        data = {}
+        for i in self.data:  # creates the keys
+            data.update({i: []})
+        for i in range(len(self.data['denominazione_region'])):  # puts the values in the relevant keys
+            if self.data['denominazione_region'][i] in districts:
+                for j in self.data:
+                    data[j].append(self.data[j][i])
+        self.data = data
