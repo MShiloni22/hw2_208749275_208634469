@@ -20,7 +20,6 @@ class Data:
         """
         self.districts_set = set(self.data['denominazione_region'])
 
-
     def set_districts_data(self, districts):
         """
         update data, will conclude all relevant regions
