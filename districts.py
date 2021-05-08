@@ -1,6 +1,4 @@
-import data
-
-
+# define class Districts
 class Districts:
     def __init__(self, dataset):
         """
@@ -39,18 +37,24 @@ class Districts:
                     print(" ", j(self.dataset.data[i]), ",", sep="", end="")
                 leng -= 1
 
-
     def determine_day_type(self):
+        """
+        determine whether a day was good\bad. creates a new key in dictionary with 1 for good, 0 for bad
+        :return: none
+        """
         day_type_list = []
         for j, k in enumerate(self.dataset.data['data']):
-            if (self.dataset.data['resigned_healed'][j]>self.dataset.data['new_positives'][j]):
+            if self.dataset.data['resigned_healed'][j] > self.dataset.data['new_positives'][j]:
                 day_type_list.append(1)
             else:
                 day_type_list.append(0)
         self.dataset.data['day_type'] = day_type_list
 
-
     def get_districts_class(self):
+        """
+        classifies which region is green and which isn't
+        :return: a dictionary - each region is a key, the only value for each key is green\not green
+        """
         self.determine_day_type()
         region_list = []
         color_dict = {}
@@ -62,7 +66,7 @@ class Districts:
             for m in range(len(self.dataset.data['denominazione_region'])):
                 if (self.dataset.data['denominazione_region'][m] == name) and (self.dataset.data['day_type'][m] == 1):
                     count = count + 1
-            if (count > 340):
+            if count > 340:
                 color_dict[name] = "green"
             else:
                 color_dict[name] = "not green"
