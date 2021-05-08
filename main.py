@@ -21,12 +21,14 @@ def main(argv):
     print()  # before question 2
 
     print("Question 2:")
-    districts_for_q2 = districts.Districts(data_dict)
-    print("Number of districts:", len(districts_for_q2.all_districts))
+    data_dict_new = data.Data(argv[1])
+    districts_for_q2 = districts.Districts(data_dict_new)
+    data.Data.get_all_districts(districts_for_q2.dataset)
+    print("Number of districts:", len(districts_for_q2.dataset.all_districts_set))
     color_dict = districts_for_q2.get_districts_class()
     not_green_counter = 0
     for key in color_dict:
-        if key[0] == 'not green':
+        if color_dict[key] == "not green":
             not_green_counter += 1
     print("Number of not green districts:", not_green_counter)
     if not_green_counter > 10:

@@ -42,7 +42,7 @@ class Districts:
 
     def determine_day_type(self):
         day_type_list = []
-        for j in self.dataset.data:
+        for j, k in enumerate(self.dataset.data['data']):
             if (self.dataset.data['resigned_healed'][j]>self.dataset.data['new_positives'][j]):
                 day_type_list.append(1)
             else:
@@ -51,20 +51,20 @@ class Districts:
 
 
     def get_districts_class(self):
+        self.determine_day_type()
         region_list = []
         color_dict = {}
         for k in self.dataset.data['denominazione_region']:
             if k not in region_list:
                 region_list.append(k)
-        count = 0
-        for i in range(len(region_list)):
-            name = region_list[i]
-            for m in range(self.dataset.data['denominazione_region']):
-                if (self.dataset.data['denominazione_region'][i] == name) and (self.dataset.data['denominazione_region'][i]):
+        for name in region_list:
+            count = 0
+            for m in range(len(self.dataset.data['denominazione_region'])):
+                if (self.dataset.data['denominazione_region'][m] == name) and (self.dataset.data['day_type'][m] == 1):
                     count = count + 1
             if (count > 340):
-                color_dict[region_list[i]] = 'green'
+                color_dict[name] = "green"
             else:
-                color_dict[region_list[i]] = 'not green'
+                color_dict[name] = "not green"
         return color_dict
 

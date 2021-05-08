@@ -37,4 +37,4 @@ def median(values):
         median1 = (values_sorted[int(number_of_elem/2)]+values_sorted[(int(number_of_elem/2))-1])/2
     else:
         median1 = values_sorted[int(number_of_elem/2)]
-    return median1*1.0
+    return median1

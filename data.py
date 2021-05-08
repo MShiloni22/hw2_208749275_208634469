@@ -47,4 +47,3 @@ class Data:
                 for k in self.data:
                     data[k].append(self.data[k][j])
         self.data = data
-        print(self.data)
