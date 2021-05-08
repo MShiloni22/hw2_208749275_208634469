@@ -41,9 +41,10 @@ class Data:
         """
         data = {}
         for i in self.data:  # creates the keys
-            data.update({i: []})
-        for i in range(len(self.data['denominazione_region'])):  # puts the values in the relevant keys
-            if self.data['denominazione_region'][i] in districts:
-                for j in self.data:
-                    data[j].append(self.data[j][i])
+            data[i] = []
+        for j, name in enumerate(self.data['denominazione_region']):  # puts the values in the relevant keys
+            if name in districts:
+                for k in self.data:
+                    data[k].append(self.data[k][j])
         self.data = data
+        print(self.data)

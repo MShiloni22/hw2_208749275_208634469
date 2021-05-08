@@ -1,3 +1,4 @@
+import data
 
 
 class Districts:
@@ -16,9 +17,9 @@ class Districts:
         :param letters: list of letters, data will be filtered by the first char in list\not
         :return: updated data
         """
-        self.dataset.get_all_districts(self.dataset)
-        self.dataset.get_relevant_districts(self.dataset, letters)
-        self.dataset.set_districts_data(self.dataset, self.districts_set)
+        self.dataset.get_all_districts()
+        self.dataset.get_relevant_districts(letters)
+        self.dataset.set_districts_data(self.dataset.districts_set)
 
     # print_details function
     def print_details(self, features, statistic_functions):

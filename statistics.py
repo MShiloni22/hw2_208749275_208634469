@@ -19,6 +19,8 @@ def mean(values):
     :return: mean
     """
     number_of_elem = len(values)
+    if number_of_elem == 0:
+        return 0
     sum1 = sum_f(values)
     mean1 = sum1 / number_of_elem
     return mean1
