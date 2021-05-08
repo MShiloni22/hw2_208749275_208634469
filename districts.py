@@ -21,16 +21,13 @@ class Districts:
         self.dataset.set_districts_data(self.dataset, self.districts_set)
 
     # print_details function
-    def print_details(self, features, statistic_functions, name):
+    def print_details(self, features, statistic_functions):
         """
-        Prints Q1
-        :param data: dictionary with the relevant values
+        Prints Q1, data inside self
         :param features: the name of the relevant list of values that will be calculated
         :param statistic_functions: three statistics functions, from statistics.py
-        :param name: header
         :return: none
         """
-        print(name, ":", sep="")    # sep removes irrelevant spaces
         for i in features:
             leng = len(statistic_functions)
             print(i, ":", sep="", end="")   # end removes irrelevant '\n'
@@ -44,25 +41,25 @@ class Districts:
 
     def determine_day_type(self):
         day_type_list = []
-        for j in self.detaset.data:
-            if (self.detaset.data['resigned_healed'][j]>self.detaset.data['new_positives'][j]):
+        for j in self.dataset.data:
+            if (self.dataset.data['resigned_healed'][j]>self.dataset.data['new_positives'][j]):
                 day_type_list.append(1)
             else:
                 day_type_list.append(0)
-        self.detaset.data['day_type'] = day_type_list
+        self.dataset.data['day_type'] = day_type_list
 
 
     def get_districts_class(self):
         region_list = []
         color_dict = {}
-        for k in self.dataset.data[denominazione_region]:
+        for k in self.dataset.data['denominazione_region']:
             if k not in region_list:
                 region_list.append(k)
         count = 0
-        for i in range(region_list.len):
+        for i in range(len(region_list)):
             name = region_list[i]
-            for m in range(self.dataset.data[denominazione_region]):
-                if (self.dataset.data[denominazione_region][i] == name) and (self.dataset.data[denominazione_region][i]):
+            for m in range(self.dataset.data['denominazione_region']):
+                if (self.dataset.data['denominazione_region'][i] == name) and (self.dataset.data['denominazione_region'][i]):
                     count = count + 1
             if (count > 340):
                 color_dict[region_list[i]] = 'green'
